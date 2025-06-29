@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crocodile Facts</title>
+    <style>
+        body {
+            background-color: #e0f7e0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        .fact-display {
+            font-size: 1.5em;
+            margin: 20px 0;
+            padding: 20px;
+            border: 2px solid #4CAF50;
+            border-radius: 10px;
+            background-color: white;
+            transition: opacity 0.5s ease;
+        }
+
+        .button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
+            margin: 5px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Crocodile Facts</h1>
+        <div id="factDisplay" class="fact-display">Click the button to see a fact!</div>
+        <button id="newFactButton" class="button">Show Random Fact</button>
+        <button id="shareButton" class="button">Share on Twitter</button>
+    </div>
+    <script>
+        const facts = [
+            "Crocodiles can live up to 70 years.",
+            "They can hold their breath underwater for over an hour.",
+            "Crocodiles are more closely related to birds than to lizards.",
+            "They can run on land at speeds of up to 12 mph.",
+            "Crocodiles have powerful jaws that can exert over 2,000 pounds of pressure.",
+            "They are known to be excellent swimmers and can swim at speeds of up to 20 mph.",
+            "Crocodiles can be found in Africa, Asia, the Americas, and Australia."
+        ];
+
+        const factDisplay = document.getElementById('factDisplay');
+        const newFactButton = document.getElementById('newFactButton');
+        const shareButton = document.getElementById('shareButton');
+
+        newFactButton.addEventListener('click', () => {
+            const randomIndex = Math.floor(Math.random() * facts.length);
+            factDisplay.style.opacity = 0; // Fade out
+            setTimeout(() => {
+                factDisplay.textContent = facts[randomIndex];
+                factDisplay.style.opacity = 1; // Fade in
+            }, 500);
+        });
+
+        shareButton.addEventListener('click', () => {
+            const factToShare = factDisplay.textContent;
+            const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(factToShare)}`;
+            window.open(twitterUrl, '_blank');
+        });
+    </script>
+</body>
+</html>
